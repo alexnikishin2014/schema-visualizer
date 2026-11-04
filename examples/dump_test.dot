@@ -1,0 +1,27 @@
+digraph "dump_test.sql" {
+    rankdir=TB;
+    label="dump_test.sql";
+    labelloc="t";
+    fontsize=22;
+    node [shape=plaintext, nodesep=0.4, ranksep=0.6];
+    edge [fontsize=10];
+    Address [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#4a76a8"><FONT COLOR="white"><B>Address</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#b03a2e" POINT-SIZE="10"><B>PK address_id INT</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#566573" POINT-SIZE="10">city VARCHAR(100)</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#566573" POINT-SIZE="10">street VARCHAR(200)</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#566573" POINT-SIZE="10">state VARCHAR(100)</FONT></TD></TR></TABLE>>];
+    Brand [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#4a76a8"><FONT COLOR="white"><B>Brand</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#b03a2e" POINT-SIZE="10"><B>PK brand_id INT</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#566573" POINT-SIZE="10">name VARCHAR(100)</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#d35400" POINT-SIZE="10">FK address_id INT</FONT></TD></TR></TABLE>>, color="#f1c40f", penwidth=2];
+    Model [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#4a76a8"><FONT COLOR="white"><B>Model</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#b03a2e" POINT-SIZE="10"><B>PK model_id INT</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#566573" POINT-SIZE="10">name VARCHAR(100)</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#d35400" POINT-SIZE="10">FK brand_id INT</FONT></TD></TR></TABLE>>];
+    Spaceship [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#4a76a8"><FONT COLOR="white"><B>Spaceship</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#b03a2e" POINT-SIZE="10"><B>PK spaceship_id INT</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#6c3483" POINT-SIZE="10">UNI vin VARCHAR(50)</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#d35400" POINT-SIZE="10">FK model_id INT</FONT></TD></TR></TABLE>>];
+    Currency [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#f5a623"><FONT COLOR="white"><B>Currency</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#b03a2e" POINT-SIZE="10"><B>PK code CHAR(3)</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#566573" POINT-SIZE="10">name VARCHAR(50)</FONT></TD></TR></TABLE>>];
+    Customer [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#4a76a8"><FONT COLOR="white"><B>Customer</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#b03a2e" POINT-SIZE="10"><B>PK customer_id INT</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#566573" POINT-SIZE="10">name VARCHAR(200)</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#6c3483" POINT-SIZE="10">UNI email VARCHAR(200)</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#d35400" POINT-SIZE="10">FK address_id INT</FONT></TD></TR></TABLE>>];
+    Dealer [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#4a76a8"><FONT COLOR="white"><B>Dealer</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#b03a2e" POINT-SIZE="10"><B>PK dealer_id INT</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#566573" POINT-SIZE="10">name VARCHAR(200)</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#d35400" POINT-SIZE="10">FK address_id INT</FONT></TD></TR></TABLE>>];
+    DealerCustomerRelation [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#f5a623"><FONT COLOR="white"><B>DealerCustomerRelation</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#b03a2e" POINT-SIZE="10"><B>PK id INT</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#d35400" POINT-SIZE="10">FK dealer_id INT</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#d35400" POINT-SIZE="10">FK customer_id INT</FONT></TD></TR></TABLE>>];
+    Sales [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#f5a623"><FONT COLOR="white"><B>Sales</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#b03a2e" POINT-SIZE="10"><B>PK sale_id INT</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#d35400" POINT-SIZE="10">FK customer_id INT</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#d35400" POINT-SIZE="10">FK dealer_id INT</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#d35400" POINT-SIZE="10">FK spaceship_id INT</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#566573" POINT-SIZE="10">sale_date DATE</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#2874a6" POINT-SIZE="10">IDX status VARCHAR(20)</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT COLOR="#566573" POINT-SIZE="10">amount DECIMAL(12,2)</FONT></TD></TR></TABLE>>];
+    Brand -> Address [label="address_id"];
+    Model -> Brand [label="brand_id"];
+    Spaceship -> Model [label="model_id"];
+    Customer -> Address [label="address_id"];
+    Dealer -> Address [label="address_id"];
+    DealerCustomerRelation -> Dealer [label="dealer_id"];
+    DealerCustomerRelation -> Customer [label="customer_id"];
+    Sales -> Customer [label="customer_id"];
+    Sales -> Dealer [label="dealer_id"];
+    Sales -> Spaceship [label="spaceship_id"];
+}
